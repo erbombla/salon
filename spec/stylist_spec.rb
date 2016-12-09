@@ -31,4 +31,34 @@ describe 'Stylist' do
       expect(stylist1).to eq(stylist1)
     end
   end
+
+  describe '.find' do
+      it('finds stylist by id') do
+        stylist1 = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+        stylist1.save
+        stylist2 = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+        stylist2.save
+        expect(Stylist.find(stylist2.id)).to eq(stylist2)
+      end
+    end
+
+  describe 'delete' do
+    it("deletes a stylist from the database") do
+      stylist1 = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+      stylist1.save
+      stylist2 = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+      stylist2.save
+      stylist1.delete
+      expect(Stylist.all).to eq([stylist2])
+    end
+  end
+
+  describe 'update' do
+    it('updates stylists in the database') do
+      stylist = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+      stylist.save
+      stylist.update({last_name: 'Bertenilli'})
+      expect(stylist.last_name).to eq('Bertenilli')
+    end
+  end
 end

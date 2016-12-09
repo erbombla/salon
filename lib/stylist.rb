@@ -28,4 +28,21 @@ class Stylist
     stylists
   end
 
+  def self.find(id)
+    found_stylist = nil
+    Stylist.all.each { |stylist| stylist.id == id.to_i ? found_stylist = stylist : false}
+    found_stylist
+  end
+
+  def delete
+    DB.exec("DELETE FROM stylists WHERE id = #{self.id()};")
+  end
+
+  def update(attributes)
+    @first_name = attributes.fetch(:first_name, @first_name)
+    @last_name = attributes.fetch(:last_name, @last_name)
+    @id = self.id
+    DB.exec("UPDATE stylists SET (first_name, last_name) = ('#{@first_name}', '#{@last_name}') WHERE id = #{@id};")
+  end
+
 end
