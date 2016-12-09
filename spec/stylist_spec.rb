@@ -1,47 +1,34 @@
 require 'spec_helper'
 
-describe 'Doctor' do
+describe 'Stylist' do
 
   describe '.id' do
     it("displays the id") do
-      new_doctor = Doctor.new({id: nil, name: "Dr. Mike Hunt", specialty: 'OBGYN'})
-      new_doctor.save
-      expect(new_doctor.id).to be_an_instance_of(Fixnum)
-    end
-  end
-
-  describe '.name' do
-    it("displays the doctor name") do
-      new_doctor = Doctor.new({id: nil, name: "Dr. Mike Hunt", specialty: 'OBGYN'})
-      expect(new_doctor.name).to eq("Dr. Mike Hunt")
-    end
-  end
-
-  describe '.specialty' do
-    it("displays the doctor specialty") do
-      new_doctor = Doctor.new({id: nil, name: "Dr. Mike Hunt", specialty: 'OBGYN'})
-      expect(new_doctor.specialty).to eq("OBGYN")
+      new_stylist = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+      new_stylist.save
+      expect(new_stylist.id).to be_an_instance_of(Fixnum)
     end
   end
 
   describe 'save' do
-    it "saves a doctor's information to the database" do
-      new_doctor = Doctor.new({id: nil, name: 'Dr. Mike Hunt', specialty: 'OBGYN'})
-      new_doctor.save
-      expect(Doctor.all).to eq([new_doctor])
+    it "saves a stylist to the database" do
+      new_stylist = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+      new_stylist.save
+      expect(Stylist.all).to eq([new_stylist])
     end
   end
 
   describe '.all' do
-  it ('starts with no lists') do
-    expect(Doctor.all).to eq([])
+  it ('initiates empty list') do
+    expect(Stylist.all).to eq([])
     end
   end
+
   describe '#==' do
-    it("is the same doctor if it has the same name and specialty") do
-      doctor1 = Doctor.new({id: nil, name: 'Dr. Mike Hunt', specialty: 'OBGYN'})
-      doctor2 = Doctor.new({id: nil, name: 'Dr. Mike Hunt', specialty: 'OBGYN'})
-      expect(doctor1).to eq(doctor2)
+    it("is the same stylist if it has the same attributes") do
+      stylist1 = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+      stylist2 = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})
+      expect(stylist1).to eq(stylist1)
     end
   end
 end

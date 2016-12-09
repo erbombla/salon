@@ -6,11 +6,15 @@
 #### By **Eric Bomblatus**
 
 ## User Stories
-* As a salon owner, I want to view, add, update and delete stylists.
-* As a salon owner, I want to view, add, update and delete clients.
-* As a salon owner, I want to add clients to a stylist.
+
+_As a salon owner:_
+
+* View, add, update and delete stylists
+* View, add, update and delete clients
+* Add clients to a stylist
 
 _Additional Requirements_
+
 Please use the following names for your databases:
 
   * Production Database: hair_salon
