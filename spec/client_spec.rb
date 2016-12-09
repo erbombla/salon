@@ -1,48 +1,63 @@
-# require 'spec_helper'
-#
-# describe 'Patient' do
-#
-#   describe '.id' do
-#     it("displays the id") do
-#       new_patient = Patient.new({id: nil, doctor_id: 1, patient_name: "Donald Trump", birthday: "1946-06-14 00:00:00"})
-#       new_patient.save
-#       expect(new_patient.id).to be_an_instance_of(Fixnum)
-#     end
-#   end
-#
-#   describe '.patient_name' do
-#     it("displays the patient name") do
-#       new_patient = Patient.new({id: nil, doctor_id: 1, patient_name: "Donald Trump", birthday: "1946-06-14 00:00:00"})
-#       expect(new_patient.patient_name).to eq("Donald Trump")
-#     end
-#   end
-#
-#   describe '.birthday' do
-#     it("displays the patient birthday") do
-#       new_patient = Patient.new({id: nil, patient_name: "Donald Trump", birthday: "1946-06-14 00:00:00", doctor_id: 1})
-#       expect(new_patient.birthday).to eq("1946-06-14 00:00:00")
-#     end
-#   end
-#
-#   describe 'save' do
-#     it "saves a patients's information to the database" do
-#       new_patient = Patient.new({id: nil, patient_name: 'Donald Trump', birthday: "1946-06-14 00:00:00", doctor_id: 1})
-#       new_patient.save
-#       expect(Patient.all).to eq([new_patient])
-#     end
-#   end
-#
-#   describe '.all' do
-#   it ('starts with no lists') do
-#     expect(Patient.all).to eq([])
-#     end
-#   end
-#
-#   describe '#==' do
-#     it("is the same patient if it has the same name and birthday") do
-#       patient1 = Patient.new({id: nil, patient_name: 'Donald Trump', birthday: "1946-06-14 00:00:00", doctor_id: 1})
-#       patient2 = Patient.new({id: nil, patient_name: 'Donald Trump', birthday: "1946-06-14 00:00:00", doctor_id: 1})
-#       expect(patient1).to eq(patient2)
-#     end
-#   end
-# end
+require 'spec_helper'
+
+describe 'Client' do
+  describe '.all' do
+    it ("initiates empty lists") do
+      expect(Client.all).to eq([])
+    end
+  end
+
+  describe '.id' do
+    it("displays the client id") do
+      client = Client.new({id: nil, client_first_name: "Eric", client_last_name: "Bomblatus", stylist_id: 1})
+      client.save
+      expect(client.id).to be_an_instance_of(Fixnum)
+    end
+  end
+
+  describe '#==' do
+    it("is the same client if it has the same attributes") do
+      client1 = Client.new({id: nil, client_first_name: "Eric", client_last_name: "Bomblatus", stylist_id: 1})
+      client2 = client = Client.new({id: nil, client_first_name: "Eric", client_last_name: "Bomblatus", stylist_id: 1})
+      expect(client1).to eq(client2)
+    end
+  end
+
+  describe '.find' do
+    it("finds client by id") do
+      client1 = Client.new({id: nil, client_first_name: "Eric", client_last_name: "Bomblatus", stylist_id: 1})
+      client1.save
+      client2 = Client.new({id: nil, client_first_name: "Stella", client_last_name: "Hennecke", stylist_id: 2})
+      client2.save
+      expect(Client.find(client2.id)).to eq(client2)
+    end
+  end
+
+  describe 'save' do
+    it ("saves a client to the database") do
+      client = Client.new({id: nil, client_first_name: "Eric", client_last_name: "Bomblatus", stylist_id: 1})
+      client.save
+      expect(Client.all).to eq([client])
+    end
+  end
+
+  describe 'delete' do
+    it("deletes a client from the database") do
+      client1 = Client.new({id: nil, client_first_name: "Eric", client_last_name: "Bomblatus", stylist_id: 1})
+      client1.save
+      client2 = Client.new({id: nil, client_first_name: "Stella", client_last_name: "Hennecke", stylist_id: 2})
+      client2.save
+      client1.delete
+      expect(Client.all).to eq([client2])
+    end
+  end
+
+  describe 'update' do
+    it('updates client in the database') do
+      client = Client.new({id: nil, client_first_name: "Eric", client_last_name: "Bomblatus", stylist_id: 1})
+      client.save
+      client.update({client_first_name: 'Lee'})
+      expect(client.client_first_name).to eq('Lee')
+    end
+  end
+end

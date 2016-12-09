@@ -11,21 +11,21 @@ class Stylist
     self.first_name == another_stylist.first_name && self.last_name == another_stylist.last_name
   end
 
-  def save
-    result = DB.exec("INSERT INTO stylists (first_name, last_name) VALUES ('#{@first_name}', '#{@last_name}') RETURNING id;")
-    @id = result.first.fetch('id').to_i
-  end
-
   def self.all
-    returned_stylist = DB.exec('SELECT * FROM stylists;')
+    returned_stylists = DB.exec('SELECT * FROM stylists;')
     stylists = []
-    returned_stylist.each do |stylist|
+    returned_stylists.each do |stylist|
       id = stylist.fetch('id').to_i
       first_name = stylist.fetch('first_name')
       last_name = stylist.fetch('last_name')
       stylists.push(Stylist.new({id: id, first_name: first_name, last_name: last_name}))
     end
     stylists
+  end
+
+  def save
+    result = DB.exec("INSERT INTO stylists (first_name, last_name) VALUES ('#{@first_name}', '#{@last_name}') RETURNING id;")
+    @id = result.first.fetch('id').to_i
   end
 
   def self.find(id)
@@ -44,5 +44,4 @@ class Stylist
     @id = self.id
     DB.exec("UPDATE stylists SET (first_name, last_name) = ('#{@first_name}', '#{@last_name}') WHERE id = #{@id};")
   end
-
 end
