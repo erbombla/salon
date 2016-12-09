@@ -1,0 +1,30 @@
+<h2>Add New Client</h2>
+<hr>
+
+<form action="/client" method="post">
+  <div class="form-group row">
+    <label for="client_first_name"class="col-xs-2 col-form-label">First Name</label>
+    <div class="col-xs-10">
+      <input class="form-control" type="text" value="First Name" id="client_first_name" name="client_first_name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="client_last_name" class="col-xs-2 col-form-label">Last Name</label>
+    <div class="col-xs-10">
+      <input class="form-control" type="text" value="Last Name" id="client_last_name" name="client_last_name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="stylist" class="col-xs-2 col-form-label">Assign Stylist</label>
+    <div class="col-xs-10" "span">
+      <select id='stylist' name='stylist' type='text'>
+        <% if @stylists.length > 0 %>
+        <% @stylists.each() do |stylist| %>
+          <option value="<%= stylist.id()%>"> <%= stylist.first_name() %>: <%= stylist.stylist_last_name() %> </option>
+        <% end %>
+        <% end %>
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
