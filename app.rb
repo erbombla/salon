@@ -34,15 +34,15 @@ post '/new_client' do
   new_client = Client.new({client_first_name: client_first_name, client_last_name: client_last_name, stylist_id: stylist_id})
 end
 
-# get '/stylists' do
-#   @stylists = Stylist.all
-#   erb :stylist_list
-# end
-#
-# get '/stylist/:id' do
-#   @stylist = Stylist.find(params[:id]).to_i
-#   erb :stylist_info
-# end
+get '/stylists' do
+  @stylists = Stylist.all
+  erb :stylist_list
+end
+
+get '/stylist/:id' do
+  @stylist = Stylist.find(params[:id]).to_i
+  erb :stylist_info
+end
 
 post '/new_stylist' do
 end

@@ -1,0 +1,9 @@
+<h2> Stylists </h2>
+<hr>
+
+<table class = "table table-striped">
+  <% @stylists.each do |stylist| %>
+    <a href= "/stylist/<%= stylist.id %>/client_list"><%= stylist.first_name %></a>
+  <% end %>
+</table>
+<a href="/" class="btn btn-default">Home</a>
