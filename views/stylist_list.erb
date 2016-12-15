@@ -1,9 +1,17 @@
 <h2> Stylists </h2>
 <hr>
 
+<% if @stylists.any?() %>
+<h3>All stylists saved to database</h3>
+
 <table class = "table table-striped">
-  <% @stylists.each do |stylist| %>
-    <a href= "/stylist/<%= stylist.id %>/client_list"><%= stylist.first_name %></a>
+  <% @stylists.each() do |stylist| %>
+    <a href="/stylist/<%= stylist.id %>"><%= stylist.first_name() %> <%= stylist.last_name() %></a>
   <% end %>
-</table>
+</table
+
+<% else %>
+<p><span class="text-danger">No stylists saved</span></p>
+<% end %>
+
 <a href="/" class="btn btn-default">Home</a>

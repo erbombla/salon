@@ -18,7 +18,9 @@ end
 post '/stylist' do
   stylist_first_name = params.fetch('stylist_first_name')
   stylist_last_name = params.fetch('stylist_last_name')
-  new_stylist = Stylist.new({stylist_first_name: stylist_first_name, stylist_last_name: stylist_last_name})
+  new_stylist = Stylist.new({first_name: stylist_first_name, last_name: stylist_last_name})
+  new_stylist.save
+  @stylists = Stylist.all
   erb :stylist_success
 end
 
@@ -31,18 +33,14 @@ post '/new_client' do
   client_first_name = params.fetch('client_first_name')
   client_last_name = params.fetch('client_last_name')
   stylist_id = params.fetch('stylist')
-  new_client = Client.new({client_first_name: client_first_name, client_last_name: client_last_name, stylist_id: stylist_id})
+  @stylist = Stylist.find(stylist_id)
+  @client = Client.new({client_first_name: client_first_name, client_last_name: client_last_name, stylist_id: stylist_id})
+  @client.save
+  @clients = Client.all
+  erb :client_success
 end
 
 get '/stylists' do
   @stylists = Stylist.all
   erb :stylist_list
-end
-
-get '/stylist/:id' do
-  @stylist = Stylist.find(params[:id]).to_i
-  erb :stylist_info
-end
-
-post '/new_stylist' do
 end
