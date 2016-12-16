@@ -1,4 +1,4 @@
-<h2> Clients For: <%= @stylist.first_name %> <%= @stylist.last_name %></h2>
+<h2> Clients For: <span class = "text-info"><%= @stylist.first_name %> <%= @stylist.last_name %></span></h2>
 <hr>
 
 <h3>Current Clients</h3>
@@ -25,5 +25,7 @@
  <p><span class="text-danger">No clients for this stylist</span></p>
 <% end %>
 
-<a href="/stylist/<%= @stylist.id %>/edit_stylist" class="btn btn-info">Edit Stylist</a>
+<a href="/stylist/<%= @stylist.id %>/edit_stylist" class="btn btn-warning">Edit Stylist</a>
+<br>
+<br>
 <a href="/" class="btn btn-info">Home</a>

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Client' do
   describe '.all' do
-    it ("initiates empty lists") do
+    it ("initiates empty list") do
       expect(Client.all).to eq([])
     end
   end
