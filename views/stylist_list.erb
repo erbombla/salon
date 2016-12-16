@@ -1,17 +1,29 @@
-<h2> Stylists </h2>
+<h2> Stylists</h2>
 <hr>
 
-<% if @stylists.any?() %>
-<h3>All stylists saved to database</h3>
+<h3>Current Stylists</h3>
+<p> Select first name to view clients </p>
 
-<table class = "table table-striped">
-  <% @stylists.each() do |stylist| %>
-    <a href="/stylist/<%= stylist.id %>"><%= stylist.first_name() %> <%= stylist.last_name() %></a>
-  <% end %>
-</table
-
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% if @stylists.any?() %>
+          <tr>
+            <% @stylists.each do |stylist| %>
+            <td><a href="/stylist/<%= stylist.id %>"><%= stylist.first_name %></a></td>
+            <td><%= stylist.last_name %></td>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
 <% else %>
-<p><span class="text-danger">No stylists saved</span></p>
+ <p><span class="text-danger">No stylists saved</span></p>
 <% end %>
 
-<a href="/" class="btn btn-default">Home</a>
+
+<a href="/" class="btn btn-info">Home</a>

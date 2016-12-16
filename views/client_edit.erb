@@ -1,0 +1,26 @@
+<h2> Edit Client: <%= @client.client_first_name %> <%= @client.client_last_name %></h2>
+<hr>
+
+<form action="/client/<%= @client.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+
+  <div class="form-group row">
+    <label for="client_first_name" class="col-xs-2 col-form-label">First Name</label>
+    <div class="col-xs-10">
+      <input class="form-control" type="text" id="client_first_name" name="client_first_name">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="client_last_name" class="col-xs-2 col-form-label">Last Name</label>
+    <div class="col-xs-10">
+      <input class="form-control" type="text" id="client_last_name" name="client_last_name">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success">Update</button>
+</form>
+<br>
+<form action="/client/<%= @client.id() %>" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit" class="btn btn-danger">Delete Client</button>
+</form>

@@ -7,6 +7,15 @@ describe 'Stylist' do
     end
   end
 
+  describe 'client_list' do
+    it('displays the clients for each stylist') do
+      stylist = Stylist.new({id: 1, first_name: 'Brittany', last_name: 'Sanders'})
+      new_client = Client.new({id: nil, client_first_name: 'Jessica', client_last_name: 'Miller', stylist_id: 1})
+      new_client.save
+      expect(stylist.client_list).to eq([new_client])
+    end
+  end
+
   describe '.id' do
     it("displays the id") do
       new_stylist = Stylist.new({id: nil, first_name: 'Harvey', last_name: 'Dent'})

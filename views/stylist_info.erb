@@ -1,0 +1,29 @@
+<h2> Clients For: <%= @stylist.first_name %> <%= @stylist.last_name %></h2>
+<hr>
+
+<h3>Current Clients</h3>
+<p> Select first name to edit </p>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @stylist.client_list.any?() %>
+        <tr>
+          <% @stylist.client_list.each do |client| %>
+          <td><a href="/client/<%= client.id %>/edit_client"><%= client.client_first_name %></a></td>
+          <td><%= client.client_last_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+ <p><span class="text-danger">No clients for this stylist</span></p>
+<% end %>
+
+<a href="/stylist/<%= @stylist.id %>/edit_stylist" class="btn btn-info">Edit Stylist</a>
+<a href="/" class="btn btn-info">Home</a>
